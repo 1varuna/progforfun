@@ -91,7 +91,51 @@ V = [2**i for i in range(20)]
 print(f'Values in List V are {V} \n')
 '''
 
-# Replacing list comprehension in place of
-# map(), replace() and reduce()
+# Traditional for loop vs list comprehension implmentation
+
+new_list = []
+numbers = range(10)
+
+'''
+# Add values to the list
+
+for n in numbers:
+    if n%2==0:                  # even numbers
+        new_list.append(n**2)   # square of the number
+'''
+# List comprehension alternative
+new_list = [n**2 for n in numbers if n%2==0]
+
+# print list
+#print(new_list)
+
+# Lambda functions with map, filter and reduce
 
 
+kilometer = [39.3,56.5,88.4,91.9,94.3,100]
+
+# map() with lambda
+#feet = map(lambda x: float(3280.8399)*x, kilometer)
+
+'''
+# List comprehension alterative
+feet = [float(3280.8399)*x for x in kilometer]
+
+print(list(feet))
+'''
+
+# filter() with lambda
+feet = [float(3280.8399)*x for x in kilometer]
+feet_int = list(map(int,feet))
+#uneven = filter(lambda x: x%2,feet_int)
+
+# List comprehension alternative
+uneven = [x for x in feet_int if x%2!=0]
+# print list
+#print(list(uneven))
+
+# reduce() with lambda
+from functools import reduce
+
+reduced_feet = reduce(lambda x,y:x+y,feet_int)
+print(reduced_feet)
